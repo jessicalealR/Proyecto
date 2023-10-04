@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración Académica</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="./icons/css/all.min.css">
+    <script src="./jquery-3.5.1.slim.min.js"></script>
+    <script src="./bootstrap.bundle.min.js"></script>
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand mx-3" href="#">
+        <i class="fas fa-globe-africa mx-1"></i>
+        ADMINISTRACIÓN ACADÉMICA
+    </a>
+</nav>
+
+
+<div class="container p-5" >
+    <div class="card" >
+        <div class="card-body">
+            <h5 class="card-title">Gestion</h5>
+            <form action="">
+                <div class="form-group">
+                    <label for="exampleSelect1" class="form-label">Semestre</label>
+                    <select class="form-select" id="selectSemestre">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="materia" class="form-label">Materia</label>
+                    <div class="input-group">
+                        <select class="form-select" id="selectMateria" name="selectMateria" aria-label="Example select with button addon">
+                            <option selected value="null">Materia...</option>
+
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"  data-toggle="modal" data-target="#modalMateria">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-2 ">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Promedio Semestre:</strong><u id="promedio">N/A</u>
+                    </div>
+                </div>
+            </form>
+
+            <label for="Activities" class="form-label mt-3">Actividades Pendientes</label>
+            <br>
+            <a class="btn btn-primary" type="button"  data-toggle="modal" data-target="#modalActividad" >Agregar Actividad</a>
+            <div class="table-responsive">
+                <table id="Activities" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nomrbe</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Ponderado</th>
+                        <th scope="col">Feha</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">Calificar</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ActivitiesTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group mt-2 ">
+            <div class="alert alert-warning" id="alertas" role="alert">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="modalMateria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMaterialLabel">Agregar Materia</h5>
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="nameMateria">Materia</label>
+                        <input type="text" class="form-control" id="materiaName" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">Ingrese el nombre de la materia</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="AddMateria" name="guardarMateria">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalActividad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalActividadLabel">Agregar Actividad</h5>
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form id="ActividadForm" action="">
+
+                    <div class="form-group">
+                        <label for="nameActividad">Nombre</label>
+                        <input type="text" class="form-control" id="nameActividad">
+                        <small class="form-text text-muted">Ingrese el nombre de la Actividad</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="selectTipoActividad" class="form-label">Tipo De Actividad</label>
+                        <select class="form-select" id="selectTipoActividad">
+                            <option value="Taller">Taller</option>
+                            <option value="Evaluación">Evaluación</option>
+                            <option value="Proyecto">Proyecto</option>
+                            <option value="Quiz ">Quiz </option>
+                        </select>
+                        <small class="form-text text-muted">Ingrese el tipo de  Actividad</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="ponderadoActividad">Ponderado</label>
+                        <input type="number" class="form-control" id="ponderadActividad">
+                        <small class="form-text text-muted">Ingrese el ponderado de la Actividad</small>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="fechaActividad">Fecha</label>
+                        <input type="date" class="form-control" id="fechaActividad" >
+                        <small class="form-text text-muted">Ingrese la fecha de la Actividad</small>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="AddActividad" name="AddActividad">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
